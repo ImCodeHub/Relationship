@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserServiceInterface {
         user.setLastName(userModel.getLastName());
         user.setEmail(userModel.getEmail());
         user.setPassword(userModel.getPassword());
+
         user.setProfile(profile); // Associate profile
 
         userRepository.save(user);
@@ -76,4 +77,19 @@ public class UserServiceImpl implements UserServiceInterface {
         }).collect(Collectors.toList());
 
     }
+
+    @Override
+    public UserModel findUserDetails(Integer userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user not found"));
+        UserModel userModel = new UserModel();
+        userModel.setFirstName(user.getFirstName()+ " "+ user.getLastName());
+        userModel.setEmail(user.getEmail());
+        userModel.setCity(user.getProfile().getCity());
+        userModel.setMobileNumber(user.getProfile().getMobileNumber());
+
+        return userModel;
+
+    }
+
+
 }
