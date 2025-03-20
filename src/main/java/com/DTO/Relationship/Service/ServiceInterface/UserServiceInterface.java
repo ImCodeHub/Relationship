@@ -8,4 +8,5 @@ import java.util.List;
 public interface UserServiceInterface {
     public String saveUser(UserModel userModel);
     public List<UserModel> getUserList();
+    public UserModel findUserDetails(Integer userId);
 }
