@@ -28,4 +28,10 @@ public class UserController {
         return new ResponseEntity<>(userList,HttpStatus.FOUND);
     }
 
+    @GetMapping("get-user/by/{id}")
+    public ResponseEntity<UserModel> getUserDetailsById(@PathVariable Integer id){
+        UserModel userDetails = userServiceImpl.findUserDetails(id);
+        return new ResponseEntity<>(userDetails, HttpStatus.FOUND);
+    }
+
 }
