@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,4 +30,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="profile_id")
     private Profile profile;
+
+//    this is the List of Post eneity or posts.
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> posts = new ArrayList<>();
 }
