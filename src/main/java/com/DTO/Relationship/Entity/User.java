@@ -1,14 +1,14 @@
 package com.DTO.Relationship.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -27,11 +27,16 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+//  (One use can have One Profile)  this is refering to Profile foriegn key
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="profile_id")
     private Profile profile;
 
-//    this is the List of Post eneity or posts.
+//  (One User can have Many Posts)  this is the List of Post ENTITY or posts.
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
+
+//  (One user can have Many Comments)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 }

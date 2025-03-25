@@ -1,13 +1,14 @@
 package com.DTO.Relationship.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
-@Data
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -25,9 +26,14 @@ public class Post {
     @Column(name = "date_time")
     private LocalDateTime dateTime;
 
+//  (Many post can belong to One User)
     @ManyToOne
     @JoinColumn(name= "user_id", nullable = false)
     private User user;
+
+//  (one post can have multiple comments)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     @PrePersist
     protected void onCreate(){
