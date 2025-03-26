@@ -11,6 +11,8 @@ import com.DTO.Relationship.Service.ServiceImplementation.CommentService;
 import com.DTO.Relationship.Service.ServiceImplementation.PostServiceImpl;
 import com.DTO.Relationship.Service.ServiceImplementation.StudentService;
 import com.DTO.Relationship.Service.ServiceImplementation.UserServiceImpl;
+import jakarta.validation.Valid;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +37,7 @@ public class UserController {
     private StudentService studentService;
 
     @PostMapping("save-user")
-    public ResponseEntity<String> saveUserDetails(@RequestBody UserModel userModel){
+    public ResponseEntity<String> saveUserDetails(@Valid @RequestBody UserModel userModel){
         String response = userServiceImpl.saveUser(userModel);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
