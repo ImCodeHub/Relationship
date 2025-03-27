@@ -17,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -37,8 +39,8 @@ public class UserController {
     private StudentService studentService;
 
     @PostMapping("save-user")
-    public ResponseEntity<String> saveUserDetails(@Valid @RequestBody UserModel userModel){
-        String response = userServiceImpl.saveUser(userModel);
+    public ResponseEntity<String> saveUserDetails(@Valid @RequestPart("user") UserModel userModel, @RequestParam("file")MultipartFile file) throws IOException {
+        String response = userServiceImpl.saveUser(userModel, file);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
