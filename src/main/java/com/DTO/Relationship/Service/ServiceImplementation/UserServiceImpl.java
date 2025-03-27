@@ -6,10 +6,13 @@ import com.DTO.Relationship.Model.UserModel;
 import com.DTO.Relationship.Repository.ProfileRepository;
 import com.DTO.Relationship.Repository.UserRepository;
 import com.DTO.Relationship.Service.ServiceInterface.UserServiceInterface;
+import com.DTO.Relationship.Service.Utility.ImageService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,8 +26,12 @@ public class UserServiceImpl implements UserServiceInterface {
     @Autowired
     private ProfileRepository profileRepository;
 
+    @Autowired
+    private ImageService imageService;
+
     @Override
-    public String saveUser(UserModel userModel) {
+    public String saveUser(UserModel userModel, MultipartFile imageFile) throws IOException {
+        String imageFileName = imageService.saveUserImage(imageFile);
         // Create Profile entity
         Profile profile = new Profile();
         profile.setAddress(userModel.getAddress());
@@ -32,6 +39,7 @@ public class UserServiceImpl implements UserServiceInterface {
         profile.setState(userModel.getState());
         profile.setMobileNumber(userModel.getMobileNumber());
         profile.setDob(userModel.getDob());
+        profile.setProfileImagePath(imageFileName);
 
         // Create User entity
         User user = new User();
