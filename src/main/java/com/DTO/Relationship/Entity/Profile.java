@@ -21,6 +21,8 @@ public class Profile {
     @Column(nullable = false)
     private String state;
 
+    private String profileImagePath;
+
     @Column(name="mobile_number",length = 10)
     private String mobileNumber;
 
