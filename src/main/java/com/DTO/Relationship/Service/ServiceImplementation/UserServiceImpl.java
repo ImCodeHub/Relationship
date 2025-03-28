@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserServiceInterface {
         profile.setState(userModel.getState());
         profile.setMobileNumber(userModel.getMobileNumber());
         profile.setDob(userModel.getDob());
-        profile.setProfileImagePath(imageFileName);
+        profile.setProfileImagePath(imageFileName); // set image name in DB
 
         // Create User entity
         User user = new User();
@@ -87,9 +87,11 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
     @Override
-    public UserModel findUserDetails(Integer userId) {
+    public UserModel findUserDetails(Integer userId) throws IOException {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("user not found"));
+        String encodedImageFromDirecotry = imageService.getEncodedImageFromDirectory(user.getProfile().getProfileImagePath());
         UserModel userModel = new UserModel();
+        userModel.setImage(encodedImageFromDirecotry);
         userModel.setFirstName(user.getFirstName()+ " "+ user.getLastName());
         userModel.setEmail(user.getEmail());
         userModel.setCity(user.getProfile().getCity());

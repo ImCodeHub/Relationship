@@ -10,5 +10,5 @@ import java.util.List;
 public interface UserServiceInterface {
     public String saveUser(UserModel userModel, MultipartFile imageFile) throws IOException;
     public List<UserModel> getUserList();
-    public UserModel findUserDetails(Integer userId);
+    public UserModel findUserDetails(Integer userId) throws IOException;
 }

@@ -28,6 +28,7 @@ public class UserModel {
     private String address;
     @Min(value = 18, message = "age must be atleast 18")
     private int age;
+    private String image;
     private String city;
     private String state;
     private String mobileNumber;
