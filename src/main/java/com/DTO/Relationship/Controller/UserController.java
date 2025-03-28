@@ -51,7 +51,7 @@ public class UserController {
     }
 
     @GetMapping("get-user/by/{id}")
-    public ResponseEntity<UserModel> getUserDetailsById(@PathVariable Integer id){
+    public ResponseEntity<UserModel> getUserDetailsById(@PathVariable Integer id) throws IOException {
         UserModel userDetails = userServiceImpl.findUserDetails(id);
         return new ResponseEntity<>(userDetails, HttpStatus.FOUND);
     }
