@@ -10,6 +10,7 @@ import com.DTO.Relationship.Service.Utility.EmailService;
 import com.DTO.Relationship.Service.Utility.ImageService;
 import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
+import org.hibernate.annotations.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -65,7 +66,6 @@ public class UserServiceImpl implements UserServiceInterface {
         emailService.sendStanderdEmail(to,subject,text);
         return "User Details has saved in Database.";
     }
-
     @Override
     public List<UserModel> getUserList() {
 //        List<UserModel> userModelList = new ArrayList<>();

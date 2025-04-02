@@ -7,6 +7,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 
@@ -65,6 +66,14 @@ public class EmailService {
                 "</html>";
 
         return html;
+    }
+    //cron = "sec min hr day month week"
+    @Scheduled(cron = "0 55 12 * * ?")
+    public void report() throws MessagingException {
+        String to = "ankitsharma.as420@gmail.com";
+        String subject = "test email for Scheduling";
+        String text = greetingEmailHtml("Ankit sharma");
+        sendStanderdEmail(to,subject,text);
     }
 }
 
