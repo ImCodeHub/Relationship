@@ -6,7 +6,9 @@ import com.DTO.Relationship.Model.UserModel;
 import com.DTO.Relationship.Repository.ProfileRepository;
 import com.DTO.Relationship.Repository.UserRepository;
 import com.DTO.Relationship.Service.ServiceInterface.UserServiceInterface;
+import com.DTO.Relationship.Service.Utility.EmailService;
 import com.DTO.Relationship.Service.Utility.ImageService;
+import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +31,16 @@ public class UserServiceImpl implements UserServiceInterface {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private EmailService emailService;
+
     @Override
-    public String saveUser(UserModel userModel, MultipartFile imageFile) throws IOException {
+    public String saveUser(UserModel userModel, MultipartFile imageFile) throws IOException, MessagingException {
+//        email properties declaration
+        String to = userModel.getEmail();
+        String subject = "Greeting From Signimus";
+        String text = emailService.greetingEmailHtml(userModel.getFirstName()+" "+userModel.getLastName());
+//      to save the user
         String imageFileName = imageService.saveUserImage(imageFile);
         // Create Profile entity
         Profile profile = new Profile();
@@ -51,6 +61,8 @@ public class UserServiceImpl implements UserServiceInterface {
         user.setProfile(profile); // Associate profile
 
         userRepository.save(user);
+        // sending email,
+        emailService.sendStanderdEmail(to,subject,text);
         return "User Details has saved in Database.";
     }
 

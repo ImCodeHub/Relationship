@@ -11,6 +11,7 @@ import com.DTO.Relationship.Service.ServiceImplementation.CommentService;
 import com.DTO.Relationship.Service.ServiceImplementation.PostServiceImpl;
 import com.DTO.Relationship.Service.ServiceImplementation.StudentService;
 import com.DTO.Relationship.Service.ServiceImplementation.UserServiceImpl;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UserController {
     private StudentService studentService;
 
     @PostMapping("save-user")
-    public ResponseEntity<String> saveUserDetails(@Valid @RequestPart("user") UserModel userModel, @RequestParam("file")MultipartFile file) throws IOException {
+    public ResponseEntity<String> saveUserDetails(@Valid @RequestPart("user") UserModel userModel, @RequestParam("file")MultipartFile file) throws IOException, MessagingException {
         String response = userServiceImpl.saveUser(userModel, file);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
