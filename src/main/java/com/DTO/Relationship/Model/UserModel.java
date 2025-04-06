@@ -20,6 +20,7 @@ public class UserModel {
     private String firstName;
     private String lastName;
     @Email(message = "Invalid Email format")
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@gmail.com$", message = "Only Gmail account is accepted")
     private String email;
     @NotBlank(message="password can not be blank")
     @Size(min = 8, max = 15, message = "Password must at least 8 character")
