@@ -45,8 +45,11 @@ public class UserTestServiceTest {
 
     @Test
     public void TestSaveUser(){
+        //mock userTestRepository and pretend that when you save any userTest just return userTest.
         when(userTestRepository.save(any(UserTest.class))).thenReturn(userTest);
+        //get the exact response(result) from service.
         String response = userTestService.saveUser(userTest);
+        //and match that result is matching with expected result or not?
         assertThat(response).isEqualTo("user has successfully saved in db.");
     }
 
