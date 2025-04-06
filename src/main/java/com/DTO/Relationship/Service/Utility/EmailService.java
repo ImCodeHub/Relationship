@@ -38,32 +38,32 @@ public class EmailService {
     }
 
     public String greetingEmailHtml(String userName) {
-        String html = "<html>" +
-                "<head>" +
-                "<style>" +
-                "body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }" +
-                ".email-container { max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 10px; }" +
-                ".header { background-color: #007bff; color: white; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; }" +
-                ".content { padding: 20px; text-align: center; font-size: 18px; color: #333; }" +
-                ".footer { text-align: center; padding: 15px; font-size: 14px; color: #777; }" +
-                "</style>" +
-                "</head>" +
-                "<body>" +
-                "<div class='email-container'>" +
-                "<div class='header'>Welcome to Our Platform!</div>" +
-                "<div class='content'>" +
-                "<p>Dear " + userName + ",</p>" +
-                "<p>We’re thrilled to have you on board! 🎉</p>" +
-                "<p>Start exploring and enjoy your journey with us.</p>" +
-                "<p>Feel free to reach out if you have any questions.</p>" +
-                "<br>" +
-                "<p>Best regards,</p>" +
-                "<p><strong>Signimus technlogy pvt ltd</strong></p>" +
-                "</div>" +
-                "<div class='footer'>© 2025 Our Platform. All rights reserved.</div>" +
-                "</div>" +
-                "</body>" +
-                "</html>";
+        String html = "<html>"
+                + "<head>"
+                + "<style>"
+                + "body { font-family: 'Arial', sans-serif; background-color: #f4f4f4; padding: 40px; text-align: center; }"
+                + ".container { max-width: 600px; margin: auto; background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0,0,0,0.2); }"
+                + ".logo { margin-bottom: 20px; width: 500px; height: 100px}"
+                + "h1 { color: #4CAF50; font-size: 24px; margin-bottom: 10px; }"
+                + "p { color: #555; font-size: 16px; margin-bottom: 20px; }"
+                + ".highlight { color: #ff9800; font-weight: bold; }"
+                + ".cta-btn { background: #4CAF50; color: white; padding: 12px 24px; text-decoration: none; font-size: 18px; border-radius: 5px; display: inline-block; margin-top: 20px; }"
+                + ".footer { margin-top: 30px; font-size: 12px; color: #777; }"
+                + "</style>"
+                + "</head>"
+                + "<body>"
+                + "<div class='container'>"
+                + "<img src='https://media.licdn.com/dms/image/v2/D4D1BAQG9EbWRESmg0Q/company-background_10000/company-background_10000/0/1655539877313/signi_mus_cover?e=2147483647&v=beta&t=2BTrmg0FzqqdERHianLRFRnXTY_x6UediPxkL28ngkA' class='logo' width='120' alt='Signimus Technology Pvt Ltd'/>"
+                + "<h1>Welcome to <span class='highlight'>Signimus Technology Pvt Ltd</span>, " + userName + "!</h1>"
+                + "<p>We are excited to have you onboard. Our team is here to innovate, inspire, and create technology solutions that empower businesses and individuals.</p>"
+                + "<p>Let's build something amazing together!</p>"
+                + "<a href='https://signimus.com' class='cta-btn'>Explore More</a>"
+                + "<div class='footer'>"
+                + "<p>&copy; 2025 Signimus Technology Pvt Ltd. All Rights Reserved.</p>"
+                + "</div>"
+                + "</div>"
+                + "</body>"
+                + "</html>";
 
         return html;
     }

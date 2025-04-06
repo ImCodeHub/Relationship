@@ -11,5 +11,4 @@ public class HibernateRelationshipApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HibernateRelationshipApplication.class, args);
 	}
-
 }
